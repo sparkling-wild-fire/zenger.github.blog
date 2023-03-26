@@ -20,7 +20,7 @@ ssh两种验证方式：
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/202303252203342.png" alt="202303252203342" width="450px">
 
-使用ssh-key,会在c盘的用户目录下生成一个ssh文件夹，其各文件的作用：
+使用ssh-key,会在c盘的用户目录下（C:\Users\你的用户名\.ssh），生成一个ssh文件夹，其各文件的作用：
 
 | 文件名称             | 	文件功能                      |
 |------------------|----------------------------|
