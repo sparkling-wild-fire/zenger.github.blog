@@ -179,7 +179,20 @@ Failed to get D-Bus connection: Operation not permitted
 
 我的启动命令：
 
-`sudo docker run -it --name centos7s_slave01 --net staticbridge --ip 172.18.2.102 -p <172.20.151.225>:13323:22 --privileged centos7_img:v2 /usr/sbin/init`
+`sudo docker run -itd --name centos7s_slave01 --hostname slave01 --net staticbridge --ip 172.18.2.102 -p 172.20.151.225:13323:22 --privileged centos7_img:v2 /usr/sbin/init`
+
+命令解析：
+- -itd:
+  - -i：表示以交互模式运行容器（让容器的标准输入保持打开）
+  - -d：表示后台运行容器，并返回容器ID
+  - -t：为容器重新分配一个伪输入终端
+- --privileged:
+  - 获取宿主机root权限
+- /usr/sbin/init、/bin/bash
+  - /bin/bash的作用是表示载入容器后运行bash ,docker中必须要保持一个进程的运行，要不然整个容器启动后就会马上kill itself
+  - /usr/sbin/init 启动容器之后可以使用systemctl方法，通常和/usr/sbin/init搭配使用
+- --hostname $host
+  - 更改centos容器的默认主机名
 
 2. 添加端口映射进行shell连接：
 
@@ -210,3 +223,12 @@ Failed to get D-Bus connection: Operation not permitted
 5. 每次进入docker的centos文件夹，都说没权限，sudo chmod -R 777 /home/xxx；但是每次重启docker，都要重新设置权限...
 
    待解决...
+
+6. 修改下centos主机名[参考链接](https://www.zhangshengrong.com/p/RmNP8BVGNk/)
+7. Linux设置默认登录用户
+    - wsl上的ubuntu尽量用root用户，也可以通过windows终端设置（加一个-u参数）
+      <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/202304101026195.png" alt="202304101026195" width="450px">
+    - centos更改默认登录用户名：这个不知道怎么改，但也没必要改
+8. 以普通用户登录，可能需要先执行一些需要root权限的脚本，可执行命令：
+   - `su - root -c "/home/source/start-api.sh"`
+   - `-c`表示执行完这个脚本后，再切换回原用户
