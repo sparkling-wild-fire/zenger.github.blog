@@ -10,3 +10,5 @@
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230421152105.png" alt="20230421152105" width="450" >
 
 这样路径下就有svn.exe了
+
+2. 递交代码前，一定要update，不然可以你的代码集成不进去

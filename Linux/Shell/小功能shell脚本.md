@@ -1,28 +1,17 @@
-1. cp -r ./src ./dst
-2. 三条命令：
+# 小功能shell脚本
+
+1. 回收站：~/.bashrc
 ```shell
-sed -i "s/algo_tran_mc_zenger_bu/algo_tran_mc_zenger/g" `grep "algo_tran_mc_zenger_bu" -rl ./`
-sed -i "s/algo_tran_mc_zenger_bu/algo_tran_mc_zenger/g" `grep "algo_tran_mc_zenger_bu" -rl ./`
-sed -i "s/algo_tran_mc_zenger_bu/algo_tran_mc_zenger/g" `grep "algo_tran_mc_zenger_bu" -rl ./`
-```
-3. 更改端口:netstat -anp |grep 17944查看端口是否被占用
-4. 更改nrs.xml的 mp端i口i
-
-# .bashrc
-
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 . /etc/bashrc
 fi
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-# https://blog.csdn.net/ace_shiyuan/article/details/60139791
 mkdir -p ~/.trash  #在home目录下创建一个.trash文件夹 ： 目录已存在不是会报错吗
-# alias rm=del    #使用别名del代替rm    // 这种系统的命令别替换
-zm()        #函数del，作用：将rm命令修改为mv命令
+# alias rm=del    #使用别名del代替rm =>  这种系统的命令别替换,因为程序中可能会用到rm命令
+del()        #函数del，作用：将rm命令修改为mv命令
 {
 stamp=$(date "+%Y-%m-%d_%H:%M") # date以时间戳的形式赋值
 # 这里不能用 "~/.trash/"${stamp}"_trash"，会在当前目录下新建~,被删除的文件会移动到当前目录的~目录下
@@ -38,4 +27,12 @@ read -p "clear sure[Input 'y' or 'Y' to confirm. && Input 'n' to cancel.]" confi
 [ $confirm == 'y' ] || [ $confirm == 'Y' ] && /bin/rm -rf ~/.trash/*
 }
 
-echo "Welcome to zenger's world!"
+# 不要输出内容，不然Arestudio会提示上传目录不存在
+# echo "Welcome to zenger's world!"
+```
+
+定时任务：crontab执行清理回收站脚本
+
+使用：
+- 将要删除的文件移入回收站：del 文件名/*
+- 清空回收站：cleardel
