@@ -8,7 +8,7 @@ git从github上传拉取资源，一般有两种方式：https协议(每次上�
 
 ### ssh生成过程
 
-ssh-key生成以及加解密大致过程：
+ssh-key生成以及加解密大致过程：(有问题，私钥加密的数据库，公钥不能解)
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/202303242255466.png" alt="202303242255466" width="450px">
 
@@ -16,7 +16,7 @@ ssh-key生成以及加解密大致过程：
 
 ssh两种验证方式：
 1. 客户端输入密码，并用公钥加密，发送到服务器，服务器用私钥解密，验证密码进行登录。vscode的remote-ssh插件就是这种类似这种形式。(现在想想，感觉不太对，vscode应该是没设置私钥的位置)[参考链接](https://www.jianshu.com/p/4c351b47a594)
-2. 客户端向服务器发送请求，携带公钥，服务器从ssh配置文件种比对公钥是相同的话，生成一个随机数，发送给客户端，客户端通过私钥加密，然后发送给服务器，如果服务器得到的数字一样，即验证成功。git上传代码到github就是这种方式，具体流程如图：
+2. （这种是正确的）客户端向服务器发送请求，携带公钥，服务器从ssh配置文件种比对公钥是相同的话，生成一个随机数，发送给客户端，客户端通过私钥加密，然后发送给服务器，如果服务器得到的数字一样，即验证成功。git上传代码到github就是这种方式，具体流程如图：
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/202303252203342.png" alt="202303252203342" width="450px">
 
@@ -29,7 +29,7 @@ ssh两种验证方式：
 | id_rsa.pub       | 	生成的公钥                     |
 | authorized_keys	 | 存放授权过的无密登录服务器公钥            |
 
-具体参考该链接：[参考链接](https://www.cnblogs.com/fengfengyang/p/15519311.html)       
+具体参考该链接(是对的吗，仔细斟酌下)：[参考链接](https://www.cnblogs.com/fengfengyang/p/15519311.html)       
 
 ### 与tocken的区别：
 
