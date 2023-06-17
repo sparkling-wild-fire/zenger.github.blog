@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="192.168.150.101 (7df3d406-d9b7-410b-a34b-151b4f6d3c8d)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.JD5Gw9M0S5" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="192.168.71.27 (e8d17afe-1e32-4c06-bbe1-5a74f434dc99)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
