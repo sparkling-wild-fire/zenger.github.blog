@@ -101,6 +101,16 @@ GRANT UNLIMITED TABLESPACE TO zenger_s1;
 ```
 
 
+## oralc常用操作
+
+```sql
+-- 查看字段：
+describ table_name;
+--查看索引：
+SELECT * FROM ALL_INDEXES WHERE TABLE_NAME=upper('toutchannelconfig');     -- upper和lower函数进行大小写转化
+```
+
+
 # 问
 - startup后`ORA-01012: not logged on`
   - `shutdown abort`后再startup
