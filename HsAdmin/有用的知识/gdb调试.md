@@ -61,5 +61,13 @@ info source =¡· No current source file.    =¡· ±àÒëµÄÊ±ºòÃ»ÓÐ¼Ó-g  =¡· ÊÇÒòÎªÃ»Ó
 ÏëÒªÖªµÀÒ»¸öº¯ÊýÖ´ÐÐµ½ÄÇÀïÖÐ¶ÏÁË£¬×¢Òâ£º
 - Ö±½ÓÊäÈë»Ø³µ£¬Ä¬ÈÏÖ´ÐÐÉÏÒ»ÌõÃüÁî
 - ×¢ÒâÔÚforÀïÃæ`n`ÃüÁîÌø²»³öÀ´ÁË
-- ²»ÄÜÔÚmtÆô¶¯µÄÊ±ºòpid£¬ËäÈ»·ÖÅä1ÁËpid£¬µ«mt»á¹Òµô
+- ²»ÄÜÔÚmtÆô¶¯µÄÊ±ºòpid£¬ËäÈ»·ÖÅäÁËpid£¬µ«mt»á¹Òµô
 - ÉèÖÃ¶ÏµãºóÓÃc£¬ÓÃr»ámt¹Òµô
+
+## ²âÊÔ»·¾³ÏÂÎ´ÃüÖÐ¶Ïµã
+
+·þÎñÆ÷±àÒëÁË¸öso£¬gdbµ÷ÊÔÕý³£,ÄÜ³É¹¦ÃüÖÐº¯Êý£¬µ«ÊÇÎÒ°ÑÕâ¸öso·¢ËÍ¸ø²âÊÔ£¬ÔÚ²âÊÔµÄ»úÆ÷ÉÏµ÷ÊÔ£¬½á¹û²»ÃüÖÐ¶Ïµã¾ÍÖ´ÐÐÍêÁË
+
+ÕâÊÇÒòÎªÒÀÀµµÄ¿âµ¼ÖÂ£¬µØÖ·Æ«ÒÆÁ¿²»Ò»ÖÂµ¼ÖÂÎ´ÃüÖÐ¶Ïµã
+
+¿ÉÀûÓÃ`nm so`ÃüÁî²é¿´º¯ÊýµÄµØÖ·¡¢ÀàÐÍ
