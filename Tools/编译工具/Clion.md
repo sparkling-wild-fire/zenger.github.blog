@@ -7,3 +7,9 @@
 3. 快捷键：
    - alt+shift: 多行编辑
    - ctrl+G:跳转到指定行：列  => 下次百度不到了就百度vscode的
+
+## 数据库
+
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728151755.png" alt="20230728151755" width="650" >
+
+点了这个提交，可能还是会锁表；需要自己执行下`commit`

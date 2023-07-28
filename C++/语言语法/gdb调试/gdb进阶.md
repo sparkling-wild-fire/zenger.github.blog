@@ -49,15 +49,18 @@
  
 ## 查看对象类型
 
-查看结果体的大小，内存布局等，在运行时，节省内存空间，序列化时，节省存储空间。
+用途：
+1. 查看结果体的大小，内存布局等，在运行时，节省内存空间，序列化时，节省存储空间。
+2. 根据`类型+地址`打印消息的具体内容
 
+命令：
 1. 查看结构体，类，派生类等
-- whatis查看类型，作用不大
-- 
+- whatis查看类型（不常用）
+
   <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/202306252227196.png" alt="202306252227196" width="450px">
 
 - ptype /r /o(内存布局) /m /t
-  - 如`test_1 *test2=new test_2()`只会显示`test_1`类型，不会显示派生类`test_2`
+  - 对于`test_1 *test2=new test_2()`,只会显示`test_1`类型，不会显示派生类`test_2`
   - `set print object on`打开开关后，就会显示派生类型了
   
     <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/202306252232029.png" alt="202306252232029" width="450px">
@@ -67,6 +70,7 @@
     <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/202306252237205.png" alt="202306252237205" width="450px">
     
 - i variables
+  - 查看变量信息
 
 ## 多线程调试
 
