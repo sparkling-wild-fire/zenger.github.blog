@@ -45,21 +45,28 @@ r
 
 解决：`GetProviderID()`在src/algo中定义，因此拉取最新的src代码，编译algo解决问题。（但algo的so本来就是最新的，为什么要用最新的src重编才可以呢？=> 难道这个so不不是最新的src编译生成的？=> 不可能啊）
 
+## V2包异常
 
-## gdb注意
+代码：
+```C++
+IF2UnPacker *lpRstrFactorResultSet = rstrFactorPacker->UnPack();
+while(!lpRstrFactorResultSet->IsEOF()){}     // => 这行报错
+```
 
-打断点的这行，是还没执行的：
+调试：
 
-<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230628101214.png" alt="20230628101214" width="450" >
+1. 打开开关：`set print object on`
+2. 查看变量类型和地址：
 
-No source file named StrategyApiDataInfoImpl.cpp，但这个文件明明存在
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728155355.png" alt="20230728155355" width="450" >
 
-info source =》 No current source file.    =》 编译的时候没有加-g  =》 是因为没有makeclean的原因吗
+3. 查看Message：
 
-## 注意
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728160508.png" alt="20230728160508" width="450" >
 
-想要知道一个函数执行到那里中断了，注意：
-- 直接输入回车，默认执行上一条命令
-- 注意在for里面`n`命令跳不出来了
-- 不能在mt启动的时候pid，虽然分配1了pid，但mt会挂掉
-- 设置断点后用c，用r会mt挂掉
+4. 查看当前数据集：
+
+这里如果是0x0, 则说明v2包是个空包，调用IsEoF产生core
+
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728160540.png" alt="20230728160540" width="450" >
+
