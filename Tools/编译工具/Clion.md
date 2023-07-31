@@ -10,6 +10,8 @@
    - alt+shift: 多行编辑
    - ctrl+G:跳转到指定行：列  => 下次百度不到了就百度vscode的
 
+4. [使用](https://www.jetbrains.com/zh-cn/clion/features/run-and-debug.html)
+
 ## 数据库
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728151755.png" alt="20230728151755" width="650" >
