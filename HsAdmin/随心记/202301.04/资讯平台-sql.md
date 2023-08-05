@@ -85,3 +85,24 @@ insert into tstp_info_synconfig(
 ```oracle
 
 ```
+
+
+6. 无表锁，但是无法删除一张表的数据
+
+报错：`Lock wait timeout exceeded; try restarting transaction`
+
+- 查看表锁，但是没有表被锁 `SHOW OPEN TABLES WHERE In_Use > 0;`
+
+- 事务：我代码里开启了事务，但是一直没提交和回滚
+
+解决方法：事务到达一定时间后，会自己弄好；手工提交
+
+7. mysql 缓存
+
+mysql缓存：第一次查千万级数据，用了5分钟，第二次查，只用了10s
+
+缓存根据查询语句生成hash key，不需要经过Optimizer模块进行执行计划的分析优化，更不需要发生任何存储引擎的交互
+
+但是它占内存，在高并发场景下，反而会造成性能下降，mysql8.0取消了缓存
+
+如果磁盘数据变更了，缓存查询的数据不是出错了吗

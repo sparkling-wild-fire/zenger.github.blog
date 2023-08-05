@@ -1,9 +1,5 @@
 # gdb调试
 
-gdb -pid=`mt进程号`
-b F功能号     => 打断点F440281002宽途直接心跳失败了
-r
-
 ## 宽途下载实例
 
 这个是因为Oracle占用过多内存，然后系统把这个进程给杀死了吗?
@@ -15,6 +11,7 @@ r
 [valgrind](https://zhuanlan.zhihu.com/p/298015939)
 
 [解core](https://www.cnblogs.com/rainisraining/p/14715533.html)
+
 
 ## algoserver调试 (gdb attach)
 
@@ -70,3 +67,17 @@ while(!lpRstrFactorResultSet->IsEOF()){}     // => 这行报错
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728160540.png" alt="20230728160540" width="450" >
 
+
+
+## 小问题记录
+
+1. 附着进程，gdb打断点后提示 `Make breakpoint pending on future shared library load`
+   - 进程号附着错了
+2. gdb调试so，在本地调试正常，发给测试后无法命中断点
+   - 因为依赖的库并没有发送，导致打断点的函数处偏移地址不同（用nm可查看函数偏移地址）
+
+这种也可以调试：
+
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230803161759.png" alt="20230803161759" width="450" >
+
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230803161928.png" alt="20230803161928" width="450" >

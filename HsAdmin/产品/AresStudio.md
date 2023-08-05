@@ -5,7 +5,7 @@
 2. 打印包体：LogFlow(lpAnswer->UnPack()) 
 手工打包的包体，都要结果集返回
 
-3. 包体的函数：`D:\vscode\AlgoServer\Sources\Include\pack_interface.h`
+3. 包体的函数：`D:\vscode\AlgoServer\Sources\Include\pack_interface.h`   => 不要找错了,Go，last这些函数都在这里，之前找错了文件，还以为没有这些函数
    - GetStr()等函数路径：`D:\vscode\AlgoServer\Sources\Include\jsonpackex_interface.h`
 
 4. dd

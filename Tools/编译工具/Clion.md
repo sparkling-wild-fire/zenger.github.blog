@@ -17,3 +17,8 @@
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728151755.png" alt="20230728151755" width="650" >
 
 点了这个提交，可能还是会锁表；需要自己执行下`commit`
+
+
+我又碰到这个问题了，但是点了提交，clion这个插件是可以查询到数据，但其他工具都查不到(表被clion锁了)，sql查询界面关掉再查询，也查询不到了
+
+如果无法解锁，可以先停用数据库再启用
