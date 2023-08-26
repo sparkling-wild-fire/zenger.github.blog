@@ -4,19 +4,17 @@
 
 1. ·Ö²¼Ê½`Ð­µ÷`×é¼þ
 
-<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230729084442.png" alt="20230729084442" width="450" >
-
-¿Í»§¶ËµÚÒ»´ÎÇëÇó·¢¸ø·þÎñÆ÷2£¬½«flagÖµÐÞ¸ÄÎªfalse£¬µÚ¶þ´ÎÔÙÇëÇó·þÎñÆ÷1£¬·ÃÎÊµ½µÄflagÒ²»áÊÇfalse
+¿Í»§¶ËµÚÒ»´ÎÇëÇó·¢¸ø·þÎñÆ÷2£¬½«flagÖµÐÞ¸ÄÎªfalse£¬µÚ¶þ´ÎÇëÇó±»¸ºÔØ¾ùºâµ½·þÎñÆ÷1£¬·ÃÎÊµ½µÄflagÒ²»áÊÇfalse
 
 Ò»µ©ÓÐ½Úµã·¢Éú¸Ä±ä£¬¾Í»áÍ¨ÖªËùÓÐ¼àÌý·½¸Ä±ä×Ô¼ºµÄÖµ£¬±£³ÖÊý¾ÝµÄÒ»ÖÂÐÔ£¨watch»úÖÆ£©  => »á²»»á¸Ä±äµÄÌ«Æµ·±ÁË
 
 2. ·Ö²¼Ê½Ëø
 
-zk¿É×öµ½`Ç¿Ò»ÖÂÐÔ` 
+ºóÃæ½²Êö
 
 3. ÎÞ×´Ì¬»¯µÄÊµÏÖ
 
-±ÈÈçÎÒµÄµÇÂ¼ÐÅÏ¢£¬µ¥¶À·ÅÔÚÄÄÒ»Ì¨Ö÷»ú¶¼²»ºÏÊÊ£¬ÕâÊ±£¬ÎÒÃÇ¾Í¿ÉÒÔ½«µÇÂ¼ÐÅÏ¢·ÅÔÚzookeeperÖÐ
+±ÈÈçÎÒµÄµÇÂ¼ÐÅÏ¢£¬µ¥¶À·ÅÔÚÄÄÒ»Ì¨Ö÷»ú¶¼²»ºÏÊÊ£¬ÕâÊ±£¬¾Í¿ÉÒÔ½«µÇÂ¼ÐÅÏ¢·ÅÔÚzookeeperÖÐ
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230729084955.png" alt="20230729084955" width="450" >
 
@@ -45,10 +43,12 @@ zk¿É×öµ½`Ç¿Ò»ÖÂÐÔ`
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230729090016.png" alt="20230729090016" width="450" >
 
-zkµÄÊý¾Ý´æ´¢»ùÓÚ½Úµã£¬ÕâÖÖ½Úµã½Ð×öZnode£¬µ«²»Í¬ÓÚÊýµÄ½Úµã£¬zNode½ÚµãµÄÒýÓÃ·½Ê½ÊÇÂ·¾¢ÒýÓÃ£¬ÀàËÆÎÄ¼þÂ·¾¶£º`/¶¯Îï/Ã¨`
+zkµÄÊý¾Ý´æ´¢»ùÓÚ½Úµã£¬ÕâÖÖ½Úµã½Ð×öZnode£¬µ«²»Í¬ÓÚÊ÷µÄ½Úµã£¬Znode½ÚµãµÄÒýÓÃ·½Ê½ÊÇÂ·¾¶ÒýÓÃ£¬ÀàËÆÎÄ¼þÂ·¾¶£º`/¶¯Îï/Ã¨`
 
 ´´½¨½Úµã£º`create /test1`,`create /test1/sub1`
+
 ´æ´¢Êý¾Ý£¨ÈçÉÏÎÄËµµÄ´æ´¢sessionÐÅÏ¢£©£º`create /test2 session`
+
 »ñÈ¡Êý¾Ý: `get /test2`
 
 ### Znode½á¹¹
@@ -59,12 +59,12 @@ zkµÄÊý¾Ý´æ´¢»ùÓÚ½Úµã£¬ÕâÖÖ½Úµã½Ð×öZnode£¬µ«²»Í¬ÓÚÊýµÄ½Úµã£¬zNode½ÚµãµÄÒýÓÃ·½Ê½ÊÇ
    - c¡¢d: create¡¢deleteÈ¨ÏÞ£¬ÔÊÐíÔÚ¸Ã½ÚµãÏÂ´´½¨¡¢É¾³ý×Ó½Úµã
    - w¡¢r£º¶ÁÐ´È¨ÏÞ
    - a£ºÔÊÐí¶Ô¸Ã½Úµã½øÐÐaclÈ¨ÏÞÉèÖÃ
-3. stat£ºÃèÊöµ±Ç°znodeµÄ`ÔªÊý¾Ý`(`get -s /tets2`¿É²é¿´£¬´´½¨Ê±¼ä¡¢°æ±¾ºÅÊ²Ã´µÄ)
+3. stat£ºÃèÊöµ±Ç°znodeµÄ`ÔªÊý¾Ý`(`get -s /tets2`¿É²é¿´£¬´´½¨Ê±¼ä¡¢°æ±¾ºÅµÈ)
 4. child£ºµ±Ç°½ÚµãµÄ×Ó½Úµã
 
-### znodeÀàÐÍ
+### ZnodeÀàÐÍ
 
-zk½Úµã´´½¨£¨Í¨¹ýzkCli¿Í»§¶Ë´´½¨£¬javaÓÐÒ»¸öcurator¿Í»§¶Ë£¬ÕâÀï²»×ö¼ÇÂ¼£©
+zk½Úµã´´½¨£¨±¾ÎÄ¶¼ÊÇÍ¨¹ýzkCli¿Í»§¶Ë´´½¨£¬javaÓÐÒ»¸öcurator¿Í»§¶Ë£¬ÕâÀï²»×ö¼ÇÂ¼£©
 
 1. ³Ö¾Ã½Úµã£º´´½¨³öµÄ½Úµã£¬ÔÚ»á»°½áÊøºóÒÀÈ»´æÔÚ
 2. ³Ö¾ÃÐòºÅ½Úµã£º´´½¨µÄ½Úµã»áÓÐÒ»¸öÊýÖµ£¬Ô½Íí´´½¨ÊýÖµÔ½´ó£¬ÊÊÓÃÓÚ·Ö²¼Ê½Ëø³¡¾°
@@ -72,7 +72,7 @@ zk½Úµã´´½¨£¨Í¨¹ýzkCli¿Í»§¶Ë´´½¨£¬javaÓÐÒ»¸öcurator¿Í»§¶Ë£¬ÕâÀï²»×ö¼ÇÂ¼£©
    - `create -s /test3`»á´´½¨`/test300000000001`½Úµã
 3. ÁÙÊ±½Úµã£º»á»°½áÊøºó×Ô¶¯É¾³ý£¬Í¨¹ýÕâ¸öÌØÐÔ£¬zk¿ÉÒÔÊµÏÖ`·þÎñ×¢²áÓë·¢ÏÖ(×¢²áÖÐÐÄ)`µÄÐ§¹û
 
-ÁÙÊ±½Úµã·¢ËÍÐøÔ¼ÐÄÌø£¬µ±Í£Ö¹·¢ËÍÐÄÌøºó£¬zk·þÎñÆ÷µÄ¶¨Ê±ÈÎÎñ»á·¢ÏÖÕâÐ©Î´ÐøÔ¼µÄsession²¢É¾³ý£º
+ÁÙÊ±½Úµã²»¶Ï·¢ËÍ»á»°ÐøÔ¼ÐÄÌø£¬µ±Í£Ö¹·¢ËÍÐÄÌøºó£¬zk·þÎñÆ÷µÄ¶¨Ê±ÈÎÎñ»á·¢ÏÖÕâÐ©Î´ÐøÔ¼µÄsession²¢É¾³ý£º
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230729092000.png" alt="20230729092000" width="450" >
 
@@ -87,7 +87,7 @@ zk½Úµã´´½¨£¨Í¨¹ýzkCli¿Í»§¶Ë´´½¨£¬javaÓÐÒ»¸öcurator¿Í»§¶Ë£¬ÕâÀï²»×ö¼ÇÂ¼£©
 ### znodeÉ¾³ý
 
 1. ÆÕÍ¨É¾³ý
-2. ÀÖ¹ÛËøÉ¾³ý£º`delete -v 0 /test2`,É¾³ýÇ°²»ÉÏËø£¬É¾³ýÊ±Èç¹û·¢ÏÖ°æ±¾ºÅ²»ÊÇ0£¬Ôò²»É¾³ý
+2. ÀÖ¹ÛËøÉ¾³ý£º`delete -v 0 /test2`,É¾³ýÇ°²»ÉÏËø£¬É¾³ýÊ±Èç¹û·¢ÏÖ°æ±¾ºÅ±ä»¯£¬ÔòÉ¾³ýÊ§°Ü
 
 ## zk·Ö²¼Ê½Ëø
 
@@ -129,9 +129,11 @@ watch»úÖÆ£º¿ÉÒÔÀí½â³É×¢²áÔÙÌØ¶¨znodeÉÏµÄ´¥·¢Æ÷£¬µ±Õâ¸öznode¸Ä±äÊ±£¬Ò²¾ÍÊÇµ÷ÓÃÁË`
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230729103350.png" alt="20230729103350" width="450" >
 
-¿Í»§¶ËÒ²»áÍ¨¹ýNIO¼àÌýzkµÄÍ¨Öª
+
 
 ## zk¼¯Èº
+
+Ö÷Òª½²Êö¼¯ÈºµÄÑ¡¾ÙºÍÊý¾ÝÍ¬²½
 
 ### ¼¯Èº½ÇÉ«
 
@@ -171,7 +173,7 @@ watch»úÖÆ£º¿ÉÒÔÀí½â³É×¢²áÔÙÌØ¶¨znodeÉÏµÄ´¥·¢Æ÷£¬µ±Õâ¸öznode¸Ä±äÊ±£¬Ò²¾ÍÊÇµ÷ÓÃÁË`
 
 ### ZABÐ­Òé
 
-zkÎªÁË±£Ö¤Êý¾ÝµÄÒ»ÖÂÐÔ£¬Ê¹ÓÃÁËZAB£¨Zookeeper Atomic Broadcast£©Ð­Òé,Õâ¸öÐ­Òé½â¾öÁËzk±ÀÀ£»Ö¸´ºÍÖ÷´ÓÊý¾ÝÍ¬²½µÄÎÊÌâ
+Ô­×Ó¹ã²¥Ð­Òé£ºzkÎªÁË±£Ö¤Êý¾ÝµÄÒ»ÖÂÐÔ£¬Ê¹ÓÃÁËZAB£¨Zookeeper Atomic Broadcast£©Ð­Òé,Õâ¸öÐ­Òé½â¾öÁËzk±ÀÀ£»Ö¸´ºÍÖ÷´ÓÊý¾ÝÍ¬²½µÄÎÊÌâ
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230729110752.png" alt="20230729110752" width="450" >
 
@@ -204,9 +206,12 @@ zk¼¯ÈºµÄÖ÷½ÚµãÒ»°ã²»¸ø¿Í»§¶ËÖ±½ÓÁ¬£¬¶øÊÇÓÃÓÚ·þÎñÆ÷Êý¾ÝÍ¬²½
 - µÚÒ»Ì¨·þÎñÆ÷ÉÏÏß£¬²»»á½øÐÐÑ¡¾Ù
 - µÚ¶þÌ¨·þÎñÆ÷ÉÏÏß£¬¿ªÊ¼Ñ¡¾Ù
   - µÚÒ»ÂÖ£º
+  
     <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230729111747.png" alt="20230729111747" width="450" >
   - µÚ¶þÂÖ£ºµÚÒ»ÂÖ»¹Ã»Ñ¡³öÆ±Êý¹ý°ëµÄ½Úµã£¬¼ÌÐøÑ¡¾Ù
+  
     <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230729112718.png" alt="20230729112718" width="450" >
+    
     - ´ËÊ±£¬½Úµã3¿ÉÄÜÒ²Æô¶¯ÁË£¬ÄÇÃ´½Úµã1ºÍ½Úµã2Ò²»áÊÕµ½½Úµã3µÄÍ¶Æ±£¬µÚ¶þÂÖ½áÊøºó£¬Èç¹ûÃ»Ñ¡³öleaderÔò»¹»á½øÐÐµÚÈýÂÖÑ¡¾Ù£¨ÕâÖÖÇé¿öÔÝ²»¿¼ÂÇ£©
     - µÚ¶þÂÖÍ¶Æ±½áÊøºó£¬leaderÑ¡¾Ù³É¹¦£¬Ñ¡¾Ù¹ý³Ì½áÊø
 - µÚÈýÌ¨·þÎñÆ÷ÉÏÏß£¬·¢ÏÖleaderÒÑ¾­´æÔÚÁË£¬×Ô¶¯³ÉÎªfollower
@@ -226,7 +231,7 @@ leader½¨Á¢Íê³Éºó£¬leaderÖÜÆÚÐÔµØÏòfollower·¢ËÍÐÄÌø£¨pingÃüÁî£©£¬µ±leader±ÀÀ£ºó£¬
 
 °´²½Öè½âÊÍ£º
 - µÚ2²½£ºleaderÏÈ½«¸ÃÊý¾Ý`DA`´æ´¢µ½×Ô¼ºµÄ´ÅÅÌ£¬¶ø²»ÄÜÖ±½ÓÐ´ÄÚ´æ£¬ÒªÐ´¾Í`ËùÓÐ`·þÎñÆ÷Ò»ÆðÐ´
-  - ÕâÀïµÄËùÓÐÊÇÖ¸¼¯ÈºÒ»ÇÐÕý³£µÄÇé¿öÏÂ
+  - ÕâÀïµÄ`ËùÓÐ`ÊÇÖ¸¼¯ÈºÒ»ÇÐÕý³£µÄÇé¿öÏÂ
 - µÚ4²½£ºfollowerÊÕµ½Êý¾Ýºó£¬²»ÄÜÖ±½ÓÐ´ÄÚ´æ£¬»áÔì³ÉÓÐµÄfollowerÖÐÓÐÊý¾Ý`DA`£¬ÓÐµÄÈ´Ã»ÓÐ£¬Ôì³ÉÊý¾Ý²»Í¬²½
 - µÚ5£¬6£¬7²½£ºÖ»ÓÐleaderÊÕµ½µÄackÏûÏ¢´ïµ½·þÎñÆ÷ÊýÁ¿µÄ`°ëÊýÒÔÉÏ`£¬²ÅÄÜ½«Êý¾ÝÐ´µ½ÄÚ´æ
   - ÎªÊ²Ã´leaderÊÕµ½ackÏûÏ¢ÊýÁ¿´ïµ½°ëÊýÒÔÉÏ¼´¿É£º
@@ -234,9 +239,7 @@ leader½¨Á¢Íê³Éºó£¬leaderÖÜÆÚÐÔµØÏòfollower·¢ËÍÐÄÌø£¨pingÃüÁî£©£¬µ±leader±ÀÀ£ºó£¬
 
 `Á½½×¶ÎÌá½»`£ºÐ´Êý¾ÝÎÄ¼þ£¬ÔÙÐ´ÄÚ´æµÄ·½Ê½,·ÀÖ¹ÓÐµÄ·þÎñÆ÷ÓÐÊý¾Ý£¬ÓÐµÄÈ´Ã»ÓÐ
 
-`Ç¿Ò»ÖÂÐÔ`£º
-
-Èç¹û¼¯ÈºÖÐµÄÒ»Ì¨·þÎñÆ÷ÓëleaderµÄÍ¨ÐÅ³öÏÖ¹ÊÕÏÁË£¬ÄÇÃ´ÕâÌ¨·þÎñÆ÷½«ÔÝÊ±ÎÞ·¨Í¬²½Êý¾Ý`DA`£¬µ«ÊÇµÈÍ¨ÐÅ»Ö¸´ÁË£¬Êý¾Ý`DA`»¹ÊÇ»áÍ¬²½µ½ÕâÌ¨·þÎñÆ÷£¬ÏÖÊµ¸÷¸ö·þÎñÆ÷Êý¾ÝµÄË³ÐòÒ»ÖÂÐÔ
+`Ç¿Ò»ÖÂÐÔ`£º Èç¹û¼¯ÈºÖÐµÄÒ»Ì¨·þÎñÆ÷ÓëleaderµÄÍ¨ÐÅ³öÏÖ¹ÊÕÏÁË£¬ÄÇÃ´ÕâÌ¨·þÎñÆ÷½«ÔÝÊ±ÎÞ·¨Í¬²½Êý¾Ý`DA`£¬µ«ÊÇµÈÍ¨ÐÅ»Ö¸´ÁË£¬Êý¾Ý`DA`»¹ÊÇ»áÍ¬²½µ½ÕâÌ¨·þÎñÆ÷£¬ÏÖÊµ¸÷¸ö·þÎñÆ÷Êý¾ÝµÄË³ÐòÒ»ÖÂÐÔ
 
 ## zkÊý¾ÝÒ»ÖÂÐÔ
 
@@ -257,7 +260,7 @@ leader½¨Á¢Íê³Éºó£¬leaderÖÜÆÚÐÔµØÏòfollower·¢ËÍÐÄÌø£¨pingÃüÁî£©£¬µ±leader±ÀÀ£ºó£¬
 
 ### BASEÀíÂÛ
 
-CAPµÄÒ»ÖÂÐÔÊÇÇ¿Ò»ÖÂÐÔ£¬¶øBaseÀíÂÛµÄºËÐÄË¼ÏëÊÇ¼´Ê¹ÎÞ·¨×öµ½Ç¿Ò»ÖÂÐÔ£¬µ«¿ÌÒâ²ÉÓÃÊÊºÏµÄ·½Ê½´ïµ½×îÖÕÒ»ÖÂÐÔ
+CAPµÄÒ»ÖÂÐÔÊÇÇ¿Ò»ÖÂÐÔ£¬¶øBaseÀíÂÛµÄºËÐÄË¼ÏëÊÇ¼´Ê¹ÎÞ·¨×öµ½Ç¿Ò»ÖÂÐÔ£¬µ«¿ÉÒÔ²ÉÓÃÊÊºÏµÄ·½Ê½´ïµ½×îÖÕÒ»ÖÂÐÔ
 
 - »ù±¾¿ÉÓÃÐÔ£º·Ö²¼Ê½ÏµÍ³³öÏÖ¹ÊÕÏÊ±£¬ÔÊÐíËðÊ§²¿·Ö¿ÉÓÃÐÔ£¬±£Ö¤ºËÐÄ¿ÉÓÃ¡£
   - Ë«Ê®Ò»ÎªÁËÓ¦¶Ô¼¤ÔöµÄÁ÷Á¿£¬Ö»Ìá¹©ä¯ÀÀ¡¢ÏÂµ¥¹¦ÄÜ£¬×¢²á¡¢ÆÀÂÛµÈ¹¦ÄÜ¹Ø±Õ
@@ -272,7 +275,7 @@ CAPµÄÒ»ÖÂÐÔÊÇÇ¿Ò»ÖÂÐÔ£¬¶øBaseÀíÂÛµÄºËÐÄË¼ÏëÊÇ¼´Ê¹ÎÞ·¨×öµ½Ç¿Ò»ÖÂÐÔ£¬µ«¿ÌÒâ²ÉÓÃÊÊº
 
 zk×·ÇóµÄÊÇCP£¬ÔÚ½øÐÐÑ¡¾ÙÊ±£¬¼¯Èº²»¶ÔÍâ¿ª·Å£¬Ñ¡¾ÙÍê³ÉºóÒª½øÐÐÊý¾ÝÍ¬²½£¬ÕâÒ»²»¿ÉÓÃµÄ¹ý³ÌÍ¨³£ÔÚ30s~120sÖ®¼ä¡£
 
-zkÔÚÊÕµ½°ëÊýÒÔÉÏµÄackºó£¨Èç¹ûÒªÊÕµ½È«²¿followerµÄack£¬»á½µµÍ¼¯ÈºµÄ¿ÉÓÃÐÔ£©£¬¾Í»áÐ´ÄÚ´æ£¬Òò´Ë»áÔì³É²¿·ÖfollowerÃ»ÓÐÍ¬²½Êý¾Ý£º
+zkÔÚÊÕµ½°ëÊýÒÔÉÏµÄackºó£¨Èç¹ûÒªÊÕµ½È«²¿followerµÄack£¬»á½µµÍ¼¯ÈºµÄÍ¬²½Ð§ÂÊ£©£¬¾Í»áÐ´ÄÚ´æ£¬Òò´Ë»áÔì³É²¿·ÖfollowerÃ»ÓÐÍ¬²½Êý¾Ý£º
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/202307312316647.png" alt="202307312316647" width="450px">
 
@@ -282,8 +285,6 @@ zkÔÚÊý¾ÝÍ¬²½Ê±£¬×·ÇóµÄ²¢²»ÊÇÇ¿Ò»ÖÂÐÔ£¬¶øÊÇË³ÐòÒ»ÖÂÐÔ£¨ÊÂÎñidµÄµ¥µ÷µÝÔö£©£¬Èç¼¯Èº
 Èç¹û²»±£Ö¤Ë³ÐòÖ´ÐÐ£¬Í¬²½Ê§°Ü¹ýµÄ·þÎñÆ÷SA¿ÉÄÜ»á²úÉú¾ÉÖµ£¬±ÈÈçµÚÒ»¸öÍ¬²½a=1Ê§°Ü£¬ºóÐøÍ¬²½a=2£¬´ËÊ±¸÷¸ö·þÎñµÄa¶¼Ó¦¸ÃÊÇ2£¬µ«SAÓÉÓÚ´íÐòÖ´ÐÐ£¬aÓÖ±ä³É1ÁË¡£
 
 ¸öÈË²ÂÏë£ºÔÚ·Ö²¼Ê½ËøÖÐ£¬µ±·þÎñÔÚÍ¬²½/znodeÊ±£¬¸÷¸ö·þÎñÆ÷¶¼¼ÓÁËËø/znode/write001£¬È»ºóÓÖÊÍ·ÅÁË£¬Èç¹ûSAÍ¬²½Ê§°Üºó£¬ÓÖÂÒÐòÖ´ÐÐ£¬»áµ¼ÖÂÕâÌ¨·þÎñÆ÷ÓÀÔ¶Ò²·ÃÎÊ²»ÁËÕâ¸öÊý¾ÝÁË¡£
-
-
 
 ### zkµÄNIOÓëBIO
 

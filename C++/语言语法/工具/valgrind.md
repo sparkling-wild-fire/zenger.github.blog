@@ -97,7 +97,7 @@ valgrind 这个工具不能用于调试正在运行的程序，因为待分析的程序必须在它的合成CPU上
 
 [MemCheck基本原理](https://zhuanlan.zhihu.com/p/510362477)：重点知道使用valgrind内存使用率会多占用25%左右
 
-## 案例
+
 
 
 

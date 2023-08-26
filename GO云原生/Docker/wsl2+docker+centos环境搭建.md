@@ -73,7 +73,7 @@ sudo apt update
 安装docker: `sudo apt install -y docker-ce`
 
 启动docker: `sudo service docker start`
-检查docker安装是否正常：
+检查docker安装是否正常,并拉取centos7：
 ```shell
 # 检查dockerd进程启动,注意wsl上ubuntu不支持systemctl
 service docker status
@@ -143,6 +143,8 @@ docker inspect <containtor_id>
 
 ## 进入centos
 
+运行容器：`docker start 容器的ID/Name`
+
 进入centos：`docker exec -it 容器id /bin/bash`
 
 然后会发现，所有命令都不能使用，需要自己安装，如ifconfig：
@@ -180,6 +182,8 @@ Failed to get D-Bus connection: Operation not permitted
 我的启动命令：
 
 `sudo docker run -itd --name centos7s_slave01 --hostname slave01 --net staticbridge --ip 172.18.2.102 -p 172.20.151.225:13323:22 --privileged centos7_img:v2 /usr/sbin/init`
+
+其中，`172.20.151.225`为ubuntu的eth0网卡地址
 
 命令解析：
 - -itd:
