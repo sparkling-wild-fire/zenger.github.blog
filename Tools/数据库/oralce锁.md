@@ -2,8 +2,10 @@
 
 当在一个应用程序能改动数据库，而其他应用程序都不能改动时，基本就说明表被锁了
 
+[参考链接](https://www.php.cn/faq/488267.html)
+
 ## 查看锁
-执行命令:`select * from v$locked_object;`
+执行命令:`select * from v$locked_object;`  (有的表没有这个视图)
 
 如果出现`表或视图不存在`的错误，是因为用户权限不够
 

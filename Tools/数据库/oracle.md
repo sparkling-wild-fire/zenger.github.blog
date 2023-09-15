@@ -20,7 +20,7 @@ or lower(table_name) like 'tstp_%' or lower(table_name) like 'thisalgojr_%' or l
 ORDER BY TABLE_NAME;
 -- 最后记得commit，SELECT 'commit'
 ```
-
+/etc/exports
 ```sql
 --- 最好用
 SELECT 'delete from '|| table_name || ';' FROM USER_TABLES where lower(table_name) like 'algojr_%' ORDER BY TABLE_NAME;
@@ -30,12 +30,29 @@ SELECT 'delete from '|| table_name || ';' FROM USER_TABLES where lower(table_nam
 -- 最后记得commit，SELECT 'commit'
 ```
 
-删除表：
+删除表(drop会把这个库的表索引也删掉)：
 ```sql
 SELECT 'DROP TABLE '|| table_name || ';' FROM USER_TABLES where lower(table_name) like 'algojr_%' ORDER BY TABLE_NAME;
 SELECT 'DROP TABLE '|| table_name || ';' FROM USER_TABLES where lower(table_name) like 'tstp_%' ORDER BY TABLE_NAME;
 SELECT 'DROP TABLE '|| table_name || ';' FROM USER_TABLES where lower(table_name) like 'thisalgojr_%' ORDER BY TABLE_NAME;
 SELECT 'DROP TABLE '|| table_name || ';' FROM USER_TABLES where lower(table_name) like 'thisstp_%' ORDER BY TABLE_NAME;
+```
+
+Mysql删除所有表:
+
+```mysql
+select concat('drop table ',table_name,';') from information_schema.TABLES where table_schema='test';
+```
+
+Oracle查看表索引：
+```oracle
+SELECT * FROM ALL_INDEXES WHERE TABLE_NAME = 'TSTP_INFO_QUOTEDAILY';
+```
+
+Mysql查看表索引：
+
+```Mysql
+SHOW INDEX FROM tstp_info_rstrfactor;
 ```
 
 ## 命令相关
@@ -57,15 +74,14 @@ lsnrctl stop
 2. sqlplus / as sysdba
 3. 以下语句需要使用sysdba用户执行，创建表空间HS_ALGOJR_DATA，datafile路径请根据实际情况修改：
 ```sql
-create tablespace HS_ALGOZG_DATA datafile '/home/oracle11/oradata/ly/algolyo32_2dat.dbf' 
-    size 1G extent management local segment space management auto;
+create tablespace HS_ALGOZG2_DATA datafile '/home/oracle/oradata/algozengzgdat.dbf' size 1G extent management local segment space management auto;
 ```
 4. 创建索引空间HS_ALGOJR_IDX，datafile路径请根据实际情况修改
 ```sql
-create tablespace HS_ALGOLY_O32_2_IDX datafile '/home/oracle11/oradata/ly/algolyo32_2idx.dbf' 
-    size 500M extent management local segment space management auto;
+create tablespace HS_ALGOZG_O32_3_IDX datafile '/home/oracle/oradata/algozgo32_3idx.dbf' size 500M extent management local segment space management auto;
 ```
 5. （可选）删除用户hs_algojr
+
 ```sql
 declare
 v_rowcount integer;
@@ -82,22 +98,22 @@ execute immediate 'DROP USER hs_algojr CASCADE';
 end if;
 end;
 ```
-6. 创建用户hs_algojr，此处密码可以自行修改
+6. 创建用户zenger_s2，此处密码可以自行修改
 ```sql
-CREATE USER zenger_s1 IDENTIFIED BY zenger_s1  default tablespace HS_ALGOZG_DATA;
+CREATE USER zenger_s2 IDENTIFIED BY zenger_s2  default tablespace HS_ALGOZG2_DATA;
 ```
-7. 用户zenger_s1赋权限:
+7. 用户zenger_s2赋权限:
 ```sql
-GRANT CONNECT TO zenger_s1;
-GRANT RESOURCE TO zenger_s1;
-GRANT create any table TO zenger_s1;
-GRANT select any table TO zenger_s1;
-GRANT create any index TO zenger_s1;
-GRANT delete any table TO zenger_s1;
-GRANT insert any table TO zenger_s1;
-GRANT update any table TO zenger_s1;
-GRANT drop any table TO zenger_s1;
-GRANT UNLIMITED TABLESPACE TO zenger_s1;
+GRANT CONNECT TO zenger_s2;
+GRANT RESOURCE TO zenger_s2;
+GRANT create any table TO zenger_s2;
+GRANT select any table TO zenger_s2;
+GRANT create any index TO zenger_s2;
+GRANT delete any table TO zenger_s2;
+GRANT insert any table TO zenger_s2;
+GRANT update any table TO zenger_s2;
+GRANT drop any table TO zenger_s2;
+GRANT UNLIMITED TABLESPACE TO zenger_s2;
 ```
 
 

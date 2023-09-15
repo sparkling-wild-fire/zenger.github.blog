@@ -11,7 +11,7 @@
 
 如果用公司内部的工具，但是连接不上数据库，可能是客户端没启动
 
-[安装链接](https://www.jianshu.com/p/ad87633af2a7)
+[安装链接32位](https://www.jianshu.com/p/ad87633af2a7)
 
 如果出现这个问题，[参考链接](https://jingyan.baidu.com/article/ca41422f04c6891eae99ed36.html)
 
@@ -19,5 +19,8 @@
 
 安装路径：
 
-<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230613183457.png" alt="20230613183457" width="450" >
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230613183457.png" alt="20230613183457" width="850" >
 
+[64位安装]
+
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230829161200.png" alt="20230829161200" width="450" >
