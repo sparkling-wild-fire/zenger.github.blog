@@ -43,32 +43,3 @@ mc: <0.0.0.0:11732->15827/tcp>, <0.0.0.0:11746->15953/udp>
 mt: <0.0.0.0:11731->9009/tcp>, <0.0.0.0:11744->15945/udp>
 
 ```
-
-
-# 主备节点挂载
-
-在生产环境中，赋予一个docker操作系统的权限是一件不安全的事，在不具有系统操作权限的情况下，可借助数据卷进行挂载
-
-![img_1.png](img_1.png)
-
-
-1. 创建两个数据卷
-
-```shell
-docker volume create vol1
-docker volume create vol2
-```
-
-2. 创建新容器：
-- 主机：将数据卷vol1挂载到主机的`/home/algotran_master/workspace/uftdata`目录，将vol2挂载到主机的`/home/algotran_master/workspace/uftdb_master/uftdata`目录
-- 备机：将数据卷vol2挂载到备机的`/home/algotran_backup/workspace/uftdata`目录，将vol1挂载到备机的`/home/algotran_backup/workspace/uftdb_master/uftdata`目录
-
-```shell
-# 主机
-docker container run -d --name container_name -v vol1:/home/algotran_master/workspace/
-uftdata -v vol2:/home/algotran_master/workspace/uftdb_master/uftdata image_name
-# 备机
-docker container run -d --name container_name -v vol2:/home/algotran_backup/workspace/
-uftdata -v vol2:/home/algotran_master/workspace/uftdb_backup/uftdata image_name
-```
-
