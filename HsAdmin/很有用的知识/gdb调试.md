@@ -55,22 +55,18 @@ while(!lpRstrFactorResultSet->IsEOF()){}     // => 这行报错
 1. 打开开关：`set print object on`
 2. 查看变量类型和地址：
 
-<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728155355.png" alt="20230728155355" width="450" >
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728155355.png" alt="20230728155355" width="850" >
 
 3. 查看Message：
 
-<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728160508.png" alt="20230728160508" width="450" >
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728160508.png" alt="20230728160508" width="850" >
 
 4. 查看当前数据集：
 
 这里如果是0x0, 则说明v2包是个空包，调用IsEoF产生core
 
-<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728160540.png" alt="20230728160540" width="450" >
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728160540.png" alt="20230728160540" width="850" >
 
-
-## uft编译问题
-
-再
 
 ## 小问题记录
 
@@ -79,7 +75,7 @@ while(!lpRstrFactorResultSet->IsEOF()){}     // => 这行报错
 2. gdb调试so，在本地调试正常，发给测试后无法命中断点
    - 因为依赖的库并没有发送，导致打断点的函数处偏移地址不同（用nm可查看函数偏移地址）
 
-这种也可以调试：
+3. F2包调试：
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230803161759.png" alt="20230803161759" width="1250" >
 

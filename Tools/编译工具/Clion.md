@@ -22,3 +22,13 @@
 我又碰到这个问题了，但是点了提交，clion这个插件是可以查询到数据，但其他工具都查不到(表被clion锁了)，sql查询界面关掉再查询，也查询不到了
 
 如果无法解锁，可以先停用数据库再刷新
+
+# clion的bash终端进程号变化问题
+
+clion的bash终端开了一会后，输入回车老是出现^?，一查看pdi已经变化了
+
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20231012101601.png" alt="20231012101601" width="850">
+
+（可以看到，切换用户也会导致bash终端pid变化，也就是成为原bash终端的一个子终端）
+
+所以会不会是centos的bash终端使用期限到了，无形中新开了一个bash导致编码问题呢？
