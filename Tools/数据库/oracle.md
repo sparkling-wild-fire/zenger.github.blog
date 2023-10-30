@@ -63,22 +63,33 @@ lsnrctl  start
 set NLS_LANG=AMERICAN_AMERICA.WE8ISO8859P1
 sqlplus /nolog   不登陆到数据库，只打开sqlplus软件
 conn /as sysdba    不登陆，以系统身份连接数据库  conn STP/STP@ORCL 
-startup (相当于这几个加起来：startup nomount、alter database mount、alter database open）
+startup (相当于这几个加起来：startup nomount、alter database mount、alter database open）  startup PFILE='/home/oracle/app/oracle/product/11.2.0/dbhome_2/dbs/pfile01.ora';
+
 shutdown immediate | abort | normal | transactional | 
 lsnrctl stop
 ```
 
+
+
+alter database datafile 7 offline drop  
+
+create spfile from pfile='/home/oracle/app/oracle/product/11.2.0/dbhome_2/dbs/pfile01.ora';
+
 ### 新建数据库示例：
 
-1. su - oracle   密码：oracle
-2. sqlplus / as sysdba
+1. su - oracle   密码：oracle   
+2. sqlplus / as sysdba   
 3. 以下语句需要使用sysdba用户执行，创建表空间HS_ALGOJR_DATA，datafile路径请根据实际情况修改：
 ```sql
-create tablespace HS_ALGOZG2_DATA datafile '/home/oracle/oradata/algozengzgdat.dbf' size 1G extent management local segment space management auto;
+create tablespace HS_ALGOZG_O3TEST_DATA datafile '/home/oracle/oradata/algozengzgdat_O3test.dbf' size 1G extent management local segment space management auto;
 ```
+CREATE DIRECTORY ZZG_DATA_PUMP_DIR AS '/home/oracle/zzgdmp/';
+
+impdb zenger_o3test/zenger_o3test@127.0.0.1:1521/orcl DIRECTORY=ZZG_DATA_PUMP_DIR DUMPFILE=ht.dmp log=export.log FULL=y;
+
 4. 创建索引空间HS_ALGOJR_IDX，datafile路径请根据实际情况修改
 ```sql
-create tablespace HS_ALGOZG_O32_3_IDX datafile '/home/oracle/oradata/algozgo32_3idx.dbf' size 500M extent management local segment space management auto;
+create tablespace HS_ALGOZG_O32_TEST_IDX datafile '/home/oracle/oradata/algozgo32_testidx.dbf' size 500M extent management local segment space management auto;
 ```
 5. （可选）删除用户hs_algojr
 
@@ -98,22 +109,24 @@ execute immediate 'DROP USER hs_algojr CASCADE';
 end if;
 end;
 ```
-6. 创建用户zenger_s2，此处密码可以自行修改
+6. 创建用户zenger_s3，此处密码可以自行修改
 ```sql
-CREATE USER zenger_s2 IDENTIFIED BY zenger_s2  default tablespace HS_ALGOZG2_DATA;
+CREATE USER trade IDENTIFIED BY trade  default tablespace HS_ALGOZG_O3test_DATA;
 ```
 7. 用户zenger_s2赋权限:
 ```sql
-GRANT CONNECT TO zenger_s2;
-GRANT RESOURCE TO zenger_s2;
-GRANT create any table TO zenger_s2;
-GRANT select any table TO zenger_s2;
-GRANT create any index TO zenger_s2;
-GRANT delete any table TO zenger_s2;
-GRANT insert any table TO zenger_s2;
-GRANT update any table TO zenger_s2;
-GRANT drop any table TO zenger_s2;
-GRANT UNLIMITED TABLESPACE TO zenger_s2;
+GRANT CONNECT TO trade;
+GRANT RESOURCE TO trade;
+GRANT create any table TO trade;
+GRANT select any table TO trade;
+GRANT create any index TO trade;
+GRANT delete any table TO trade;
+GRANT insert any table TO trade;
+GRANT update any table TO trade;
+GRANT drop any table TO trade;
+GRANT UNLIMITED TABLESPACE TO trade;
+
+GRANT SYSDBA TO trade;
 ```
 
 
@@ -124,6 +137,19 @@ GRANT UNLIMITED TABLESPACE TO zenger_s2;
 describ table_name;
 --查看索引：
 SELECT * FROM ALL_INDEXES WHERE TABLE_NAME=upper('toutchannelconfig');     -- upper和lower函数进行大小写转化
+```
+
+
+### oracle表空间扩展
+
+查看表空间：
+```oracle
+SELECT t.tablespace_name, ROUND(SUM(t.bytes) / 1024 / 1024, 2) total_space_mb, ROUND(SUM(t.bytes - NVL(f.free_space, 0)) / 1024 / 1024, 2) used_space_mb, ROUND(NVL(f.free_space, 0) / 1024 / 1024, 2) free_space_mb, ROUND((SUM(t.bytes - NVL(f.free_space, 0)) / SUM(t.bytes)) * 100, 2) used_percent FROM (SELECT tablespace_name, SUM(bytes) bytes FROM dba_data_files GROUP BY tablespace_name UNION ALL SELECT tablespace_name, SUM(bytes) FROM dba_temp_files GROUP BY tablespace_name) t, (SELECT tablespace_name, SUM(bytes) free_space FROM dba_free_space GROUP BY tablespace_name) f WHERE t.tablespace_name = f.tablespace_name(+) GROUP BY t.tablespace_name, f.free_space ORDER BY t.tablespace_name;
+```
+
+扩展：
+```oracle
+ALTER TABLESPACE HS_ALGOZG_O3TEST_DATA ADD DATAFILE '/home/oracle/oradata/zenger_extend3.dbf' SIZE 1G;
 ```
 
 

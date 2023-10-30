@@ -1,17 +1,4 @@
-# gdb调试
-
-## 宽途下载实例
-
-这个是因为Oracle占用过多内存，然后系统把这个进程给杀死了吗?
-
-试图访问未分配给自己的内存, 或试图往没有写权限的内存地址写数据时,系统就会发送给进程`11`这样信号
-
-<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230614103202.png" alt="20230614103202" width="450" >
-
-[valgrind](https://zhuanlan.zhihu.com/p/298015939)
-
-[解core](https://www.cnblogs.com/rainisraining/p/14715533.html)
-
+# gdb调试示例
 
 ## algoserver调试 (gdb attach)
 
@@ -40,7 +27,7 @@
 
 所以，在第三个栈帧的时候就应该产生core了，第二个栈帧应该是python进程重启的时候产生的（所以第二个栈帧为什么会写入这个core呢？）。因此，问题就聚焦到`GetProviderID()`这个函数了。
 
-解决：`GetProviderID()`在src/algo中定义，因此拉取最新的src代码，编译algo解决问题。（但algo的so本来就是最新的，为什么要用最新的src重编才可以呢？=> 难道这个so不不是最新的src编译生成的？=> 不可能啊）
+解决：`GetProviderID()`在src/algo中定义，因此拉取最新的src代码，编译algo解决问题。（后面发现是在合并algoserver和algotran代码时导致的问题）
 
 ## V2包异常
 
