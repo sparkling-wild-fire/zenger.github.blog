@@ -1,7 +1,5 @@
 # 主备节点挂载
 
-注意：以下内容只在本人私人环境上实现过，是否能用于测试环境的部署并不确定
-
 在生产环境中，赋予一个docker操作系统的权限是一件不安全的事，在不具有系统操作权限的情况下，主备机无法通过nfs进行挂载。此时，可借助数据卷进行挂载
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20231012161912.png" alt="20231012161912" width="850">
