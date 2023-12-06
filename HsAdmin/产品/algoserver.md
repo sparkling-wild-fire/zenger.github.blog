@@ -8,7 +8,7 @@
    - 如果还是core，找别人的环境一个个排除是哪方面的问题，（首先只改动appcom和algoserver_as.xml）
    - 行情获取失败，策略无法启动 =》 找别人要个行情服务器，配置到hqserver.xml
    - 方案开始时间不能大于方案闭市时间 =》 修改交易时段表
-     - `update algojr_texectimeinfo set day_exec_time_range='093000-113000;130000-190000' where market_no=1;`
+     - `update algojr_texectimeinfo set day_exec_time_range='093000-113000;130000-210000' where market_no=1;`
 
 3. algoserver灾备
    - 重启后，策略站点无方案站点序号才会递增
