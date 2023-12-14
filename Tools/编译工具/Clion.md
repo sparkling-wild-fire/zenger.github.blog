@@ -33,14 +33,29 @@ clion的bash终端开了一会后，输入回车老是出现^?，一查看pdi已经变化了
 
 所以会不会是centos的bash终端使用期限到了，无形中新开了一个bash导致编码问题呢？
 
-## 检查连接时成功，但拉不了代码
+## clion检查连接时成功，但拉不了代码
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20231214171258.png" alt="20231214171258" width="850">
 
-
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20231214171447.png" alt="20231214171447" width="450">
 
+推送失败: `fatal: unable to access 'https://github.com/sparkling-wild-fire/zenger.github.blog/': Failed to connect to github.com port 443 after 32150 ms: Couldn't connect to server`
 
-尼玛，又有了。。。
+手动推送：
+```shell
+# 首先，将本地代码提交到本地仓库：
+git add .
+git commit -m "提交信息"
+# 然后，将本地仓库与远程仓库进行关联(第一次关联就行了)
+git remote add origin 远程仓库地址
+# 最后，将本地代码推送到远程仓库：
+git push -u origin main
+```
 
-但推送失败: `fatal: unable to access 'https://github.com/sparkling-wild-fire/zenger.github.blog/': Failed to connect to github.com port 443 after 32150 ms: Couldn't connect to server`
+如果拉取失败，就手动拉取：
+```shell
+cd 本地仓库目录
+git pull 远程仓库别名 远程仓库分支名
+```
+
+其中，远程仓库别名，可以使用 git remote -v 命令查看，如果本地仓库已经与远程仓库进行了关联，可以省略远程仓库别名和分支名
