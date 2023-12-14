@@ -33,3 +33,14 @@ clion的bash终端开了一会后，输入回车老是出现^?，一查看pdi已经变化了
 
 所以会不会是centos的bash终端使用期限到了，无形中新开了一个bash导致编码问题呢？
 
+## 检查连接时成功，但拉不了代码
+
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20231214171258.png" alt="20231214171258" width="850">
+
+
+<img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20231214171447.png" alt="20231214171447" width="450">
+
+
+尼玛，又有了。。。
+
+
