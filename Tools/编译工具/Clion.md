@@ -43,4 +43,4 @@ clion的bash终端开了一会后，输入回车老是出现^?，一查看pdi已经变化了
 
 尼玛，又有了。。。
 
-
+但推送失败: `fatal: unable to access 'https://github.com/sparkling-wild-fire/zenger.github.blog/': Failed to connect to github.com port 443 after 32150 ms: Couldn't connect to server`
