@@ -4,7 +4,7 @@
 d9dc81d3ac78   o32_uft:201902A.04_6        "/sbin/sshd -D"    
 0.0.0.0:11822->22/tcp, 
 0.0.0.0:11826->5224/udp, 0.0.0.0:11827->5226/udp, 0.0.0.0:11828->5227/udp, 
-0.0.0.0:11837->15859/udp, ,  
+0.0.0.0:11837->15859/udp,
 
 oracle:
 mt: <0.0.0.0:11823->1522/tcp>
@@ -46,7 +46,7 @@ zzg_qt_zhubei_bei_1
 zzg_qt_zhubei_zhu_1
 
 algotran_backup:
-mp: <0.0.0.0:11733->15841/tcp>, <0.0.0.0:11745->15958/udp >
+mp: <0.0.0.0:11733->15841/tcp>, <0.0.0.0:11745->15958/udp>
 mc: <0.0.0.0:11732->15827/tcp>, <0.0.0.0:11746->15953/udp>
 mt: <0.0.0.0:11731->9009/tcp>, <0.0.0.0:11744->15945/udp>
 
@@ -61,17 +61,19 @@ mt: <0.0.0.0:11736->15858/tcp>
 algotran: 192.168.71.28  shell端口：11722  mp-F2：11742   mp-T2：11725   用户名密码：algotran_test/test
 algoserver: 192.168.71.28    shell端口：11722   用户名密码：algsrv_test/test
 
-algoent:192.168.39.155    shell端口：22     用户名密码：zzj_algoent/1
-bus:192.168.39.155        shell端口：22     用户名密码：zzj_bus/1
+algoent: 192.168.39.155    shell端口：22     用户名密码：zzj_algoent/1
+bus: 192.168.39.155        shell端口：22     用户名密码：zzj_bus/1
 
 模拟节点数据库: 192.168.71.27:1521/orcl  tarde/tarde
 algotran数据库： 192.168.71.27:1521/orcl  zenger_o3test/zenger_o3test
 
-
 测试云平台网站配置：开发使用环境 =>  宽途后台开发public
 
 
-LogFlow("zzz:strategy_id="<<p_strategy_id);
-LogFlow("zzz:p_strategy_station_no="<<p_strategy_station_no);
-LogFlow("zzz:p_station_status="<<p_station_status);
+## 常用环境
 
+
+```txt
+zzwbus：
+192.168.71.28:11222    o4bar/o4bar
+```

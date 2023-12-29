@@ -52,6 +52,13 @@ git remote add origin 远程仓库地址
 git push -u origin main
 ```
 
+如果手动推也推不上，那就在终端加代理：
+```shell
+git config --global http.proxy http://127.0.0.1:7890
+# 取消代理
+git config --global --unset http.proxy
+```
+
 如果拉取失败，就手动拉取：
 ```shell
 cd 本地仓库目录
