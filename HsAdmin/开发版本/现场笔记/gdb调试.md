@@ -55,7 +55,6 @@ while(!lpRstrFactorResultSet->IsEOF()){}     // => 这行报错
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20230728160540.png" alt="20230728160540" width="450" >
 
 
-
 ## 小问题记录
 
 1. 附着进程，gdb打断点后提示 `Make breakpoint pending on future shared library load`
