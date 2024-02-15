@@ -92,7 +92,7 @@ sudo gpasswd -a username docker
 newgrp docker
 ```
 
-如果速度太满，配置阿里云镜像加速器（自行百度下，[参考链接](https://blog.csdn.net/m0_67391270/article/details/126565050)）：
+如果速度太慢，配置阿里云镜像加速器（自行百度下，[参考链接](https://blog.csdn.net/m0_67391270/article/details/126565050)）：
 
 <img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/202303142202132.png" alt="202303142202132" width="450px">
 
