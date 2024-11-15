@@ -7,6 +7,7 @@
 
 3. 包体的函数：`D:\vscode\AlgoServer\Sources\Include\pack_interface.h`   => 不要找错了,Go，last这些函数都在这里，之前找错了文件，还以为没有这些函数
    - GetStr()等函数路径：`D:\vscode\AlgoServer\Sources\Include\jsonpackex_interface.h`
+   - 智能指针：F:\Algoserver\Sources\src\algo_public\auto_ptr.h
 
 4. dd
 ```text

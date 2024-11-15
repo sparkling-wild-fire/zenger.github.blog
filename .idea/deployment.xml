@@ -23,7 +23,42 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="OtradeStp (db262966-d080-4a59-b556-eb88453867e8)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="docker主服务">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="oracle (29888c95-341d-4455-b2fc-096cf09ba686)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zenger">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="主服务器 (5347f5e0-b550-4462-8054-8b55a6086d48)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.zNPYEhgMT1" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="分中心 (0f435331-75f3-40d2-a9cd-b2652fc1a502)">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
@@ -31,6 +66,13 @@
         </serverdata>
       </paths>
       <paths name="备服务器 (b0f554ec-eade-40cb-9ffa-a31e01c30625)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="总中心 (48407d83-1eda-4cad-bc90-b302eb6bf207)">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

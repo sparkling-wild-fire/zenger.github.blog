@@ -42,6 +42,8 @@ Mysql删除所有表:
 
 ```mysql
 select concat('drop table ',table_name,';') from information_schema.TABLES where table_schema='test';
+
+SELECT TABLE_SCHEMA FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'database_name';
 ```
 
 Oracle查看表索引：
@@ -81,15 +83,15 @@ create spfile from pfile='/home/oracle/app/oracle/product/11.2.0/dbhome_2/dbs/pf
 2. sqlplus / as sysdba   
 3. 以下语句需要使用sysdba用户执行，创建表空间HS_ALGOJR_DATA，datafile路径请根据实际情况修改：
 ```sql
-create tablespace HS_ALGOZG_O3TEST_DATA datafile '/home/oracle/oradata/algozengzgdat_O3test.dbf' size 1G extent management local segment space management auto;
+create tablespace HS_ALGO_OTRADE_DATA datafile '/home/oracle/oradata/otradedat.dbf' size 1G extent management local segment space management auto;
 ```
-CREATE DIRECTORY ZZG_DATA_PUMP_DIR AS '/home/oracle/zzgdmp/';
+CREATE DIRECTORY OTRADE_DATA_PUMP_DIR AS '/home/oracle/otradedmp/';
 
-impdb zenger_o3test/zenger_o3test@127.0.0.1:1521/orcl DIRECTORY=ZZG_DATA_PUMP_DIR DUMPFILE=ht.dmp log=export.log FULL=y;
+impdb otrade/otrade@127.0.0.1:1521/orcl DIRECTORY=OTRADE_DATA_PUMP_DIR DUMPFILE=ht.dmp log=export.log FULL=y;   => 不要
 
 4. 创建索引空间HS_ALGOJR_IDX，datafile路径请根据实际情况修改
 ```sql
-create tablespace HS_ALGOZG_O32_TEST_IDX datafile '/home/oracle/oradata/algozgo32_testidx.dbf' size 500M extent management local segment space management auto;
+create tablespace HS_ALGO_OTRADE_IDX datafile '/home/oracle/oradata/algo_otrade_idx.dbf' size 500M extent management local segment space management auto;
 ```
 5. （可选）删除用户hs_algojr
 
@@ -109,24 +111,24 @@ execute immediate 'DROP USER hs_algojr CASCADE';
 end if;
 end;
 ```
+
 6. 创建用户zenger_s3，此处密码可以自行修改
 ```sql
-CREATE USER trade IDENTIFIED BY trade  default tablespace HS_ALGOZG_O3test_DATA;
+CREATE USER otrade IDENTIFIED BY otrade default tablespace HS_ALGO_OTRADE_DATA;
 ```
 7. 用户zenger_s2赋权限:
 ```sql
-GRANT CONNECT TO trade;
-GRANT RESOURCE TO trade;
-GRANT create any table TO trade;
-GRANT select any table TO trade;
-GRANT create any index TO trade;
-GRANT delete any table TO trade;
-GRANT insert any table TO trade;
-GRANT update any table TO trade;
-GRANT drop any table TO trade;
-GRANT UNLIMITED TABLESPACE TO trade;
-
-GRANT SYSDBA TO trade;
+GRANT CONNECT TO otrade;
+GRANT RESOURCE TO otrade;
+GRANT create any table TO otrade;
+GRANT select any table TO otrade;
+GRANT create any index TO otrade;
+GRANT delete any table TO otrade;
+GRANT insert any table TO otrade;
+GRANT update any table TO otrade;
+GRANT drop any table TO otrade;
+GRANT UNLIMITED TABLESPACE TO otrade;
+GRANT SYSDBA TO otrade;
 ```
 
 
