@@ -1,6 +1,7 @@
 # git常用命令
 
 如果需要将一个文件同步到另一个文件（如Otrade改了某一个文件，现在要同步到另一个文件）：
+
 ```shell
 git checkout origin/dev-ALGOV202301.02.000.LS -- ./algo_mysql/logic/scheme_mgr/quant_schemehandle/LS_LHTOOLS_SCHEMESUB_INFO_MNG.logicservice
 ```

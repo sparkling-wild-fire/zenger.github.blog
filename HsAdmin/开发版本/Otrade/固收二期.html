@@ -1,0 +1,518 @@
+<h1 id="固收二期">固收二期</h1>
+<h2 id="表结构设计">表结构设计</h2>
+<p>尽量少往表中添加数据，需要的数据关联查询,一部分在Otrade后台表可以查到，一部分需要查询O3，可能需要将O3的这些字段同步到Otrade</p>
+<pre class="oracle"><code>prompt &#39;新增表tstp_inquire_qtquote&#39;;
+declare
+    v_rowcount number(10);
+begin
+select count(1) into v_rowcount from user_objects where upper(object_name) = upper(&#39;tstp_inquire_qtquote&#39;);
+if v_rowcount = 0 then
+    execute immediate &#39;CREATE TABLE tstp_inquire_qtquote(
+        serial_no number(8,0) NOT NULL,     -- 意向序号
+        inquire_date number(8,0) NULL,      -- 下达日期
+        inquire_time number(6,0) NULL,     -- 下达时间
+        quote_status char(1) NULL,          -- 询价状态
+        dispense_status char(1) NULL DEFAULT &#39;&#39; ,    -- 分发状态
+        quote_exec_status char(1) NULL DEFAULT &#39;&#39;,  -- 执行状态
+        quote_type char(1) NULL,     -- 询价方式
+        inquire_id int(10) NULL,     -- 询价序号
+        approve_status char  DEFAULT NULL,   -- 审批状态
+        fund_code varchar2(32) NULL,   -- 产品序号
+        combi_id    number(10,0)    DEFAULT 0  NULL,  -- 组合序号
+        custom_text varchar(2000) NULL    -- 报价文本
+        quote_id    varchar2(128)   NULL,   -- 报价id
+        create_time number(6,0) NULL,     -- 插入时间   
+        update_time number(6,0) NULL,     -- 更新时间
+        stock_code varchar2(32) NULL,     -- 债券代码
+        market_no varchar2(3) NULL,         -- 市场号           
+        entrust_direction varchar2(3) NULL,   -- 交易方向
+        price_type char(1) NULL,              -- 价格类型
+        entrust_balance number(18,6) NULL,         -- 委托金额（数量）
+        trade_operator_code varchar2(128) NULL,    -- 交易员
+        invest_manager_code varchar2(128)   NULL,             -- 投资经理
+        trade_operator_name varchar2(128) NULL,      -- 交易员名称
+        channel_id number(8,0) NULL,             -- 渠道
+        sequence_value number(10,0) NULL,     -- 暂定，看功能实现需不需要
+        rival varchar2(128) NULL,   -- 对手方
+        rival_operator_no number(8,0) NULL    -- 对手交易员
+        chinabond_dair_price varchar2(128) NULL  -- 中债估值
+        mature_yield number(15,8) NULL,    -- 到期收益率
+        warrant_yield_rate number(15,8) NULL,       -- 行权收益率
+        net_price number(20,12) NULL,     -- 净价
+        entrust_amount number(20,4) NULL,   -- 数量
+        clear_speed number(8,0) NULL,     -- 清算速度
+        trade_date number(8,0) NULL,     -- 交易日期
+        settle_date number(8,0) NULL,     -- 结算日期
+        quote_valid_time varchar2(24) NULL,   -- 报价有效日期  日期+时间
+        third_remark varchar2(256) NULL,     -- 备注
+        issuer_code varchar2(64) NULL,     -- 发行人关联查询
+        invest_type char DEFAULT NULL,   -- 投资类型
+    )&#39;;
+    execute immediate &#39;ALTER TABLE tstp_inquire_qtquote add constraint pk_tstp_inquire_qtquote primary key (serial_no)&#39;;
+end if;
+commit;
+end</code></pre>
+<p>待确定字段：</p>
+<p>处理方式分为几种： 1.
+在O3能查询出来，需要把这些字段从O3同步过来，还是直接查O3 2.
+在O3能查询出来，但感觉查询的表不太对，如：是否城投 3.
+如果O3和Otrade表中都找不到，就在Otrade表中新增这个字段，如：行业</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sparkling-wild-fire/picgo@main/blogs/pictures/20250110132047.png" alt="20250110132047" width="850"></p>
+<table>
+<thead>
+<tr>
+<th>
+字段
+</th>
+<th>
+来源
+</th>
+<th>
+备注
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+债券类型
+</td>
+<td>
+O3债券属性表
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+待尝其
+</td>
+<td>
+中债估值字段
+</td>
+<td>
+确定可以从中债估值字段取到？
+</td>
+</tr>
+<tr>
+<td>
+债券评级
+</td>
+<td>
+O3债券属性表
+</td>
+<td>
+分为内部外部债券评级？
+</td>
+</tr>
+<tr>
+<td>
+主体评级
+</td>
+<td>
+O3债券自定义评级表
+</td>
+<td>
+不对劲
+</td>
+</tr>
+<tr>
+<td>
+中债隐含评级
+</td>
+<td>
+没有找到类似字段
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="qt意向更新">QT意向更新</h2>
+<p>新增和修改共用一个接口，serial_no传表示新增，传其他值表示修改</p>
+<p>QT意向支持单笔和批量发布，serial_no自增</p>
+<table>
+<thead>
+<tr>
+<th>
+217242
+</th>
+<th>
+字段名
+</th>
+<th>
+字段名称
+</th>
+<th>
+字段类型
+</th>
+<th>
+是否必传
+</th>
+<th>
+默认值
+</th>
+<th>
+备注
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="1">
+入参
+</td>
+<td>
+obj_inquire_qtquote
+</td>
+<td>
+Qtrade询价意向对象
+</td>
+<td>
+obj
+</td>
+<td>
+Y
+</td>
+<td>
+</td>
+<td>
+Otrade意向表的所有字段
+</td>
+</tr>
+<tr>
+<td rowspan="7">
+出参
+</td>
+<td>
+error
+</td>
+<td>
+错误号
+</td>
+<td>
+int
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+error_info
+</td>
+<td>
+错误信息
+</td>
+<td>
+string
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="qt意向撤销">QT意向撤销</h2>
+<p>撤销 若存在失败记录，则显示共有N笔失败记录，详情如下： 内部意向ID，
+QT意向ID ,
+债券代码、交易方向、净价（如有）、收益率（如有）、量，失败原因。</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Obj_qtquote_cancel<span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> serial_no<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> inquire_id<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    string stock_code<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> entrust_direction<span class="op">;</span>a</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> net_price<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> mature_yield<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> entrust_balance<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> error_no<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    string error_info<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>撤销就是更改询价状态吧</p>
+<table>
+<thead>
+<tr>
+<th>
+217243
+</th>
+<th>
+字段名
+</th>
+<th>
+字段名称
+</th>
+<th>
+字段类型
+</th>
+<th>
+是否必传
+</th>
+<th>
+默认值
+</th>
+<th>
+备注
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="1">
+入参
+</td>
+<td>
+serial_no_obj
+</td>
+<td>
+询价流水号对象
+</td>
+<td>
+obj
+</td>
+<td>
+Y
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td rowspan="7">
+出参
+</td>
+<td>
+obj_qtquote_cancel
+</td>
+<td>
+QTrade意向撤销结果结构体
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="qtrade意向查询">Qtrade意向查询</h2>
+<p>查询条件：报价方向、清算速度、投资经理、询价状态、审批状态、分发状态、执行状态、有效日期（起始和终止）</p>
+<p>看界面还有这个根据产品查询（是客户端自己过滤吗？）</p>
+<p>哪些条件需要支持批量？</p>
+<p>有效日期拆分成开始日期和结束日期？</p>
+<table>
+<thead>
+<tr>
+<th>
+217244
+</th>
+<th>
+字段名
+</th>
+<th>
+字段名称
+</th>
+<th>
+字段类型
+</th>
+<th>
+是否必传
+</th>
+<th>
+默认值
+</th>
+<th>
+备注
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="9">
+入参
+</td>
+<td>
+obj_entrust_direction
+</td>
+<td>
+报价方向
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+obj_fund_code
+</td>
+<td>
+产品
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+obj_settle_speed
+</td>
+<td>
+清算速度
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+obj_approve_status
+</td>
+<td>
+审批状态
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+obj_dispense_status
+</td>
+<td>
+分发状态
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+obj_execute_status
+</td>
+<td>
+执行状态
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+invest_manager_code
+</td>
+<td>
+投资经理代码
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+begin_date
+</td>
+<td>
+开始日期
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+end_date
+</td>
+<td>
+开始日期
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td rowspan="1">
+出参
+</td>
+<td>
+obj_inquire_qtquote
+</td>
+<td>
+QTrade意向结构体
+</td>
+<td>
+obj
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
